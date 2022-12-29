@@ -1,5 +1,4 @@
 
-
 public class Grid {
 	int y;
 	int x;
@@ -12,11 +11,11 @@ public class Grid {
 		y = aPoint.getY();
 		c = mainChar;
 	}
-	
-	public String getDisplay(){
+
+	public String getDisplay() {
 		return disp;
 	}
-	
+
 	public String makeDisplay() {
 		for (int j = 0; j < y; j++) {
 			for (int i = 0; i < x; i++) {
@@ -27,14 +26,14 @@ public class Grid {
 		return disp;
 	}
 
-	public int getX(){
+	public int getX() {
 		return x;
 	}
 
-	public int getY(){
+	public int getY() {
 		return y;
 	}
-	
+
 	public String framework() {
 		for (int j = 0; j < y; j++) {
 			for (int i = 0; i < x; i++) {
@@ -54,11 +53,12 @@ public class Grid {
 		disp = disp.substring(0, index) + character + disp.substring((index + 1), disp.length());
 		return disp;
 	}
+
 	public String replaceCell(Point pointA, String character) {
 
 		int column = pointA.getX();
 		int row = pointA.getY();
-		
+
 		int index = ((((x * 2) + 1) * (row - 1)) - 1) + ((column * 2) - 1);
 
 		// y is how many rows there are, x is how many columns.
@@ -66,5 +66,5 @@ public class Grid {
 		disp = disp.substring(0, index) + character + disp.substring((index + 1), disp.length());
 		return disp;
 	}
-	
+
 }
