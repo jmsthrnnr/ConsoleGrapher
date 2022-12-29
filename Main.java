@@ -23,6 +23,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		/*
 		int count = 0;
 		while (count < 1) {
 
@@ -64,6 +65,13 @@ public class Main {
 			System.out.println("Make another?\n0. yes\n1. no");
 			count = ScanInt();
 		}
+	*/
+		int XY = ScanFirst();
+		Point pointA = new Point(XY, XY);
+		Grid aGrid = new Grid(pointA, ".");
+		aGrid.makeDisplay();
+		axis(aGrid);
+		System.out.println(aGrid.getDisplay());
 	}
 
 	public static void axis(Grid aGrid) {
@@ -205,5 +213,9 @@ public class Main {
 				line(pointM.origin(aGrid), pointB, repl, aGrid);
 			}
 		}
+	}
+
+	public static void grapher(String repl, Grid aGrid) {
+		
 	}
 }
