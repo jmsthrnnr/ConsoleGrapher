@@ -23,7 +23,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		/*
+		
 		int count = 0;
 		while (count < 1) {
 
@@ -65,13 +65,15 @@ public class Main {
 			System.out.println("Make another?\n0. yes\n1. no");
 			count = ScanInt();
 		}
-	*/
-		int XY = ScanFirst();
+	
+		/*
+	int XY = ScanFirst();
 		Point pointA = new Point(XY, XY);
 		Grid aGrid = new Grid(pointA, ".");
 		aGrid.makeDisplay();
 		axis(aGrid);
 		System.out.println(aGrid.getDisplay());
+		*/
 	}
 
 	public static void axis(Grid aGrid) {
@@ -177,7 +179,7 @@ public class Main {
 
 		System.out.println(aGrid.getDisplay());
 	}
-
+/*
 	public static void line(Point pointA, Point pointB, String repl, Grid aGrid) {
 		// System.out.println("from: " + ax + " " + ay + " to: " + bx + " " + by);
 		int ax = pointA.getX();
@@ -214,8 +216,46 @@ public class Main {
 			}
 		}
 	}
+	*/
+	public static void line(Point pointA, Point pointB, String repl, Grid aGrid) {
+		// System.out.println("from: " + ax + " " + ay + " to: " + bx + " " + by);
+		int ax = pointA.getX();
+		int ay = pointA.getY();
+		int bx = pointB.getX();
+		int by = pointB.getY();
+		int yDiff = Math.abs(by - ay);
+		int xDiff = Math.abs(bx - ax);
+
+		if (yDiff == 0) {
+			for (int i = 0; i <= xDiff; i++) {
+				aGrid.replaceCell((ax + i), ay, repl);
+			}
+		} else if (xDiff == 0) {
+			for (int i = 0; i <= yDiff; i++) {
+				aGrid.replaceCell(ax, (ay + i), repl);
+			}
+		} else {
+			int slope = yDiff / xDiff;
+			if (Math.abs(xDiff) == Math.abs(yDiff)) {
+				
+				if (slope == 1) {
+					for (int i = 0; i <= yDiff; i++) {
+						aGrid.replaceCell((ax + i), (ay + i), repl);
+					}
+				} else if(slope == -1){
+					for (int i = 0; i <= yDiff; i++) {
+						aGrid.replaceCell((ax - i), (ay + i), repl);
+					}
+				}
+			} else {
+				for(int i = 0; i < yDiff; i ++){
+					aGrid.replaceCell((ax + (i * slope)), (ay + (i * (1/slope))), repl);
+				}
+			}
+		}
+	}
 
 	public static void grapher(String repl, Grid aGrid) {
-		
+
 	}
 }
