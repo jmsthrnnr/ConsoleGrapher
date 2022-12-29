@@ -6,21 +6,18 @@ public class Main {
 	public static int ScanInt() {
 		Scanner read = new Scanner(System.in);
 		int j = read.nextInt();
-		read.close(); // make sure scanner is closed
 		return j;
 	}
 
 	public static String ScanLine() {
 		Scanner scan = new Scanner(System.in);
-		String c = scan.nextLine();
-		scan.close();
+		String c = scan.next();
 		return c;
 	}
 
 	public static int ScanFirst() {
 		Scanner scan = new Scanner(System.in);
 		int c = scan.nextInt();
-		scan.close();
 		c = (c * 2) + 1;
 		return c;
 	}
