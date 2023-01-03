@@ -49,7 +49,7 @@ public class Main {
 
 			System.out.println(aGrid.getDisplay());
 
-			System.out.println("Input action\n1. replace point\n2. animate point\n3. draw line");
+			System.out.println("Input action\n1. replace point\n2. animate point\n3. draw line\n4. graph");
 			int option = ScanInt();
 
 			System.out.println("Input replacement character:");
@@ -61,6 +61,8 @@ public class Main {
 				animate(repl, aGrid);
 			} else if (option == 3) {
 				drawLine(repl, aGrid);
+			}else if(option == 4){
+				grapher(repl, aGrid);
 			}
 			System.out.println("Make another?\n0. yes\n1. no");
 			count = ScanInt();
@@ -175,12 +177,12 @@ public class Main {
 
 		Point pointB = new Point(bx, by);
 
-		line(pointA.origin(aGrid), pointB.origin(aGrid), repl, aGrid);
+		recurLine(pointA, pointB, repl, aGrid);
 
 		System.out.println(aGrid.getDisplay());
 	}
-/*
-	public static void line(Point pointA, Point pointB, String repl, Grid aGrid) {
+
+	public static void recurLine(Point pointA, Point pointB, String repl, Grid aGrid) {
 		// System.out.println("from: " + ax + " " + ay + " to: " + bx + " " + by);
 		int ax = pointA.getX();
 		int ay = pointA.getY();
@@ -211,13 +213,13 @@ public class Main {
 				}
 			} else {
 				Point pointM = pointA.midpoint(pointB);
-				line(pointA, pointM.origin(aGrid), repl, aGrid);
-				line(pointM.origin(aGrid), pointB, repl, aGrid);
+				recurLine(pointA, pointM.origin(aGrid), repl, aGrid);
+				recurLine(pointM.origin(aGrid), pointB, repl, aGrid);
 			}
 		}
 	}
-	*/
-	public static void line(Point pointA, Point pointB, String repl, Grid aGrid) {
+	
+	public static void slopeLine(Point pointA, Point pointB, String repl, Grid aGrid) {
 		// System.out.println("from: " + ax + " " + ay + " to: " + bx + " " + by);
 		int ax = pointA.getX();
 		int ay = pointA.getY();
@@ -235,7 +237,7 @@ public class Main {
 				aGrid.replaceCell(ax, (ay + i), repl);
 			}
 		} else {
-			int slope = yDiff / xDiff;
+			double slope = yDiff / xDiff;
 			if (Math.abs(xDiff) == Math.abs(yDiff)) {
 				
 				if (slope == 1) {
@@ -249,13 +251,32 @@ public class Main {
 				}
 			} else {
 				for(int i = 0; i < yDiff; i ++){
-					aGrid.replaceCell((ax + (i * slope)), (ay + (i * (1/slope))), repl);
+					aGrid.replaceCell((int) (ax + (i * slope)), (int) (ay + (i * (1/slope))), repl);
 				}
 			}
 		}
 	}
 
-	public static void grapher(String repl, Grid aGrid) {
+	public static void grapher(String repl, Grid gridA) {
+		int x1;
+		int y1;
+		int xMin = -((int) ((gridA.getX() / 2)));
+		int xMax = ((int) ((gridA.getX() / 2)));
+		int yMin = -((int) ((gridA.getY() / 2)));
+		int yMax = ((int) ((gridA.getY() / 2)));
 
+		for(int t = -10; t < 10; t ++){
+			x1 = t;
+			y1 =(int) Math.pow( t, 2) - 4;
+			if(x1 >= xMin && x1 <= xMax && y1 >= yMin && y1 <= yMax){
+
+				Point pointA = new Point(x1, y1);
+				gridA.replaceCell(pointA.origin(gridA), repl);
+				System.out.println(x1 + " " + y1);
+			}
+		}
+		System.out.println(gridA.getDisplay());
 	}
+
+	
 }
