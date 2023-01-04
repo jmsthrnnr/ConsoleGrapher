@@ -267,10 +267,12 @@ public class Main {
 
 		for(int t = -10; t < 10; t ++){
 			x1 = t;
-			y1 =(int) Math.pow( t, 2) - 4;
-			if(x1 >= xMin && x1 <= xMax && y1 >= yMin && y1 <= yMax){
+			y1 = (int) (3 * (Math.sin(t)));
+			Point pointA = new Point(t, (int) (3 * (Math.sin(t))));
+			Point pointB = new Point(t + 1, (int) (3 * (Math.sin(t + 1))));
 
-				Point pointA = new Point(x1, y1);
+			if(x1 >= xMin && x1 <= xMax && y1 >= yMin && y1 <= yMax){
+				
 				gridA.replaceCell(pointA.origin(gridA), repl);
 				System.out.println(x1 + " " + y1);
 			}
