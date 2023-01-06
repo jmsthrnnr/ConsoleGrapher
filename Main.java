@@ -190,24 +190,32 @@ public class Main {
 		int by = pointB.getY();
 		int yDiff = by - ay;
 		int xDiff = bx - ax;
+		
 
+		
 		if (yDiff == 0) {
-			for (int i = 0; i <= xDiff; i++) {
+			for (int i = 0; i <= Math.abs(xDiff); i++) {
 				aGrid.replaceCell((ax + i), ay, repl);
 			}
 		} else if (xDiff == 0) {
-			for (int i = 0; i <= yDiff; i++) {
+			for (int i = 0; i <= Math.abs(yDiff); i++) {
 				aGrid.replaceCell(ax, (ay + i), repl);
 			}
 		} else {
 			if (Math.abs(xDiff) == Math.abs(yDiff)) {
+
 				int slope = yDiff / xDiff;
 				if (slope == 1) {
-					for (int i = 0; i <= yDiff; i++) {
+					
+
+					for (int i = 0; i <= Math.abs(yDiff); i++) {
 						aGrid.replaceCell((ax + i), (ay + i), repl);
 					}
+
+
 				} else {
-					for (int i = 0; i <= yDiff; i++) {
+
+					for (int i = 0; i <= Math.abs(yDiff); i++) {
 						aGrid.replaceCell((ax - i), (ay + i), repl);
 					}
 				}
@@ -217,6 +225,7 @@ public class Main {
 				recurLine(pointM.origin(aGrid), pointB, repl, aGrid);
 			}
 		}
+		
 	}
 	
 	public static void slopeLine(Point pointA, Point pointB, String repl, Grid aGrid) {
